@@ -100,7 +100,6 @@ if [ ! -f /etc/systemd/system/archy-seamless-login.service ]; then
   cat <<EOF | sudo tee /etc/systemd/system/archy-seamless-login.service
 [Unit]
 Description=Archy Seamless Auto-Login
-Documentation=https://github.com/basecamp/omarchy
 Conflicts=getty@tty1.service
 After=systemd-user-sessions.service getty@tty1.service plymouth-quit.service systemd-logind.service
 PartOf=graphical.target
