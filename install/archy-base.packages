@@ -1,18 +1,23 @@
 # Archy core package list installed via install/packages.sh
 
+acpi
 alacritty
 bash-completion
+code
 docker
 docker-buildx
 docker-compose
+evince
 exfatprogs
 fastfetch
 firefox
 gnome-keyring
+gimp
 gum
 imagemagick
 less
 libreoffice-fresh
+lm_sensors
 localsend
 mako
 nautilus
@@ -22,13 +27,17 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 ntfs-3g
-nvim
+neovim
 obs-studio
 omarchy-chromium
 omarchy-lazyvim
+powertop
 plymouth
 spotify
+tlp
 ufw
 ufw-docker
 unzip
-yay
+vlc
+vlc-plugin-ffmpeg
+yaru-icon-theme
