@@ -3,6 +3,7 @@
 acpi
 alacritty
 bash-completion
+bitwarden
 code
 docker
 docker-buildx
