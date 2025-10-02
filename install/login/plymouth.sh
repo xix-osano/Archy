@@ -4,8 +4,6 @@
 # PLYMOUTH SETUP
 # ==============================================================================
 
-  sudo pacman -S --noconfirm --needed plymouth
-
 if [ "$(plymouth-set-default-theme)" != "archy" ]; then
   sudo cp -r "$HOME/.local/share/archy/default/plymouth" /usr/share/plymouth/themes/archy/
   sudo plymouth-set-default-theme archy
@@ -150,3 +148,15 @@ fi
 if ! systemctl is-enabled getty@tty1.service | grep -q disabled; then
   sudo systemctl disable getty@tty1.service
 fi
+
+# ==============================================================================
+# DISABLE SDDM (if installed)
+# ==============================================================================
+
+if systemctl list-unit-files | grep -q '^sddm.service'; then
+    echo "Disabling SDDM..."
+    sudo systemctl disable sddm
+    sudo systemctl mask sddm
+fi
+
+
