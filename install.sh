@@ -6,7 +6,6 @@ set -eEo pipefail
 # Define Archy locations
 export ARCHY_PATH="$HOME/.local/share/archy"
 export ARCHY_INSTALL="$ARCHY_PATH/install"
-export ARCHY_INSTALL_LOG_FILE="/var/log/archy-install.log"
 export PATH="$ARCHY_PATH/bin:$PATH"
 
 # Install
