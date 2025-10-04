@@ -4,17 +4,11 @@ acpi
 alacritty
 bash-completion
 bitwarden
-code
-docker
-docker-buildx
-docker-compose
-evince
 exfatprogs
 fastfetch
 firefox
 gnome-keyring
 gimp
-gum
 imagemagick
 less
 libreoffice-fresh
@@ -34,6 +28,7 @@ powertop
 plymouth
 spotify
 tlp
+tlp-rdw
 ufw
 ufw-docker
 unzip
