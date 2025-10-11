@@ -13,7 +13,6 @@ fastfetch
 firefox
 gnome-keyring
 gimp
-gum
 imagemagick
 less
 libreoffice-fresh
@@ -26,6 +25,7 @@ obs-studio
 powertop
 plymouth
 tlp
+tlp-rdw
 ufw
 ufw-docker
 unzip
