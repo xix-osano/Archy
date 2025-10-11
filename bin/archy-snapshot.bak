@@ -1,0 +1,36 @@
+#!/bin/bash
+
+COMMAND="$1"
+ARCHY_PATH=${ARCHY_PATH:-$HOME/.local/share/archy}
+
+if [[ -z $COMMAND ]]; then
+  echo "Usage: archy-snapshot <create|restore>" >&2
+  exit 1
+fi
+
+if ! command -v snapper &>/dev/null; then
+  exit 127 # archy-update can use this to just ignore if snapper is not available
+fi
+
+case "$COMMAND" in
+create)
+  DESC="Snapshot $(date +'%Y-%m-%d %H:%M:%S')"
+
+  echo -e "\e[32mCreate system snapshot\e[0m"
+  
+  # Get existing snapper config names from CSV output
+  mapfile -t CONFIGS < <(sudo snapper --csvout list-configs | awk -F, 'NR>1 {print $1}')
+
+  for config in "${CONFIGS[@]}"; do
+    sudo snapper -c "$config" create -c number -d "$DESC"
+  done
+  echo
+  ;;
+restore)
+  if ! command -v limine-snapper-restore &>/dev/null; then
+    echo "Error: limine-snapper-restore not installed" >&2
+    exit 127
+  fi
+  sudo limine-snapper-restore
+  ;;
+esac

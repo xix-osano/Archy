@@ -43,7 +43,7 @@ if ! command -v limine &>/dev/null; then
 
     # Backup GRUB config before modifying
     backup_timestamp=$(date +"%Y%m%d%H%M%S")
-    sudo cp /etc/default/grub "/etc/default/grub.bak.${backup_timestamp}"
+    sudo cp /etc/default/grub "/etc/default/grub1.bak.${backup_timestamp}"
 
     # Check if splash is already in GRUB_CMDLINE_LINUX_DEFAULT
     if ! grep -q "GRUB_CMDLINE_LINUX_DEFAULT.*splash" /etc/default/grub; then
