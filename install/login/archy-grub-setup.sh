@@ -30,7 +30,7 @@ fi
 # --- Install grub-btrfs for snapshot integration ---
 sudo pacman -S --noconfirm --needed grub-btrfs snapper inotify-tools
 
-sudo systemctl enable --now grub-btrfs.path
+sudo systemctl enable --now grub-btrfsd.service
 
 # --- Configure Snapper ---
 for cfg in root home; do
