@@ -5,7 +5,6 @@ alacritty
 bash-completion
 bitwarden
 docker
-docker-buildx
 docker-compose
 evince
 exfatprogs
@@ -13,6 +12,7 @@ fastfetch
 firefox
 gnome-keyring
 gimp
+gum
 imagemagick
 less
 libreoffice-fresh
