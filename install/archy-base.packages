@@ -15,7 +15,6 @@ imagemagick
 less
 libreoffice-fresh
 lm_sensors
-localsend
 networkmanager
 ntfs-3g
 neovim
@@ -25,7 +24,6 @@ plymouth
 tlp
 tlp-rdw
 ufw
-ufw-docker
 unzip
 vlc
 vlc-plugin-ffmpeg
