@@ -4,8 +4,6 @@ acpi
 alacritty
 bash-completion
 bitwarden
-docker
-docker-compose
 evince
 exfatprogs
 fastfetch
