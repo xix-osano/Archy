@@ -21,7 +21,7 @@ sudo mkinitcpio -P
 # --- Install GRUB ---
 if $EFI; then
   sudo pacman -S --noconfirm --needed grub efibootmgr os-prober
-  sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id="Archy(GRUB)" --recheck
+  sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id="Archy" --recheck
 else
   sudo pacman -S --noconfirm --needed grub os-prober
   sudo grub-install --target=i386-pc /dev/$(lsblk -no pkname $(findmnt -n -o SOURCE /))
