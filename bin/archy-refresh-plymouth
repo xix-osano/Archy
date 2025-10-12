@@ -3,8 +3,5 @@
 sudo cp ~/.local/share/archy/default/plymouth/* /usr/share/plymouth/themes/archy/
 sudo plymouth-set-default-theme archy
 
-if command -v limine-mkinitcpio &>/dev/null; then
-  sudo limine-mkinitcpio
-else
-  sudo mkinitcpio -P
-fi
+# Always rebuild initramfs with mkinitcpio
+sudo mkinitcpio -P

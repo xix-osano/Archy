@@ -21,7 +21,7 @@ sudo mkinitcpio -P
 # --- Install GRUB ---
 if $EFI; then
   sudo pacman -S --noconfirm --needed grub efibootmgr os-prober
-  sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id="Archy" --recheck
+  sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id="Archy(GRUB)" --recheck
 else
   sudo pacman -S --noconfirm --needed grub os-prober
   sudo grub-install --target=i386-pc /dev/$(lsblk -no pkname $(findmnt -n -o SOURCE /))
@@ -57,30 +57,12 @@ else
   echo "No existing /etc/default/grub found; skipping backup."
 fi
 
-# --- GRUB Defaults ---
-sudo tee /etc/default/grub >/dev/null <<EOF
-GRUB_DEFAULT=0
-GRUB_TIMEOUT=3
-GRUB_DISTRIBUTOR="Archy"
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash btrfs"
-GRUB_CMDLINE_LINUX="rootflags=subvol=@"
-GRUB_ENABLE_CRYPTODISK=y
-GRUB_DISABLE_OS_PROBER=false
-GRUB_BTRFS_SHOW_SNAPSHOTS_SUBMENU=y
-EOF
-
-# --- Theme / Styling ---
-sudo mkdir -p /boot/grub/themes/archy
-sudo tee /boot/grub/themes/archy/theme.txt >/dev/null <<EOF
-title-text: "Archy Bootloader"
-desktop-color: "#1a1b26"
-title-color: "#7aa2f7"
-message-color: "#9ece6a"
-border-color: "#7dcfff"
-EOF
-
-sudo sed -i '/^GRUB_THEME/d' /etc/default/grub
-echo 'GRUB_THEME="/boot/grub/themes/archy/theme.txt"' | sudo tee -a /etc/default/grub
+# --- Ensure grub-btrfs setting exists (update or append) ---
+if grep -q '^GRUB_BTRFS_SHOW_SNAPSHOTS_SUBMENU=' /etc/default/grub; then
+  sudo sed -i 's/^GRUB_BTRFS_SHOW_SNAPSHOTS_SUBMENU=.*/GRUB_BTRFS_SHOW_SNAPSHOTS_SUBMENU=y/' /etc/default/grub
+else
+  echo 'GRUB_BTRFS_SHOW_SNAPSHOTS_SUBMENU=y' | sudo tee -a /etc/default/grub >/dev/null
+fi
 
 # --- Generate Config ---
 sudo grub-mkconfig -o /boot/grub/grub.cfg

@@ -11,8 +11,5 @@ fi
 
 echo "mkinitcpio hooks re-enabled"
 
-if command -v limine &>/dev/null; then
-  sudo limine-update
-else
-  sudo mkinitcpio -P
-fi
+# Always rebuild initramfs with mkinitcpio
+sudo mkinitcpio -P

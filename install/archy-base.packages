@@ -1,29 +1,17 @@
 # Archy core package list installed via install/packages.sh
 
 acpi
-alacritty
 bash-completion
-bitwarden
-evince
 exfatprogs
 fastfetch
-firefox
 gnome-keyring
 gimp
 gum
 imagemagick
 less
-libreoffice-fresh
 lm_sensors
-networkmanager
-ntfs-3g
-neovim
 obs-studio
-powertop
 plymouth
-tlp
-tlp-rdw
-ufw
 unzip
 vlc
 vlc-plugin-ffmpeg
