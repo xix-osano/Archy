@@ -1,6 +1,5 @@
 # Archy core package list installed via install/packages.sh
 
-acpi
 bash-completion
 exfatprogs
 fastfetch
@@ -9,7 +8,6 @@ gimp
 gum
 imagemagick
 less
-lm_sensors
 obs-studio
 plymouth
 unzip
