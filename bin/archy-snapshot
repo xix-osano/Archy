@@ -36,9 +36,9 @@ create)
   done
 
   # Notify grub-btrfs daemon to update GRUB snapshot menu
-  if systemctl is-active --quiet grub-btrfs.path; then
+  if systemctl is-active --quiet grub-btrfsd.service; then
     echo "→ Updating GRUB snapshot entries..."
-    systemctl restart grub-btrfs.path
+    systemctl restart grub-btrfsd.service
   fi
 
   echo -e "\e[1;32mSnapshot created successfully. Boot menu updated.\e[0m"
