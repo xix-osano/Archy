@@ -57,6 +57,15 @@ else
   echo "No existing /etc/default/grub found; skipping backup."
 fi
 
+# --- Theme / Styling ---
+sudo cp -r ~/.local/share/archy/install/Vixy /boot/grub/themes/Vixy
+# --- Ensure grub-theme setting exists (update or append) ---
+if grep -q '^GRUB_THEME=' /etc/default/grub; then
+  sudo sed -i 's/^GRUB_THEME=.*/GRUB_THEME="/boot/grub/themes/Vixy/theme.txt"/' /etc/default/grub
+else
+  echo 'GRUB_THEME="/boot/grub/themes/Vixy/theme.txt"' | sudo tee -a /etc/default/grub >/dev/null
+fi
+
 # --- Ensure grub-btrfs setting exists (update or append) ---
 if grep -q '^GRUB_BTRFS_SHOW_SNAPSHOTS_SUBMENU=' /etc/default/grub; then
   sudo sed -i 's/^GRUB_BTRFS_SHOW_SNAPSHOTS_SUBMENU=.*/GRUB_BTRFS_SHOW_SNAPSHOTS_SUBMENU=y/' /etc/default/grub
@@ -69,4 +78,5 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 echo -e "\e[32m==> GRUB setup complete!\e[0m"
 echo "  - Snapper snapshots will appear in the GRUB menu under 'Arch Linux Snapshots'"
+echo "Generated GRUB config at /boot/grub/grub.cfg"
 echo "  - Use 'sudo grub-mkconfig -o /boot/grub/grub.cfg' after creating snapshots to refresh entries"

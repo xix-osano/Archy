@@ -1,12 +1,15 @@
 # Archy core package list installed via install/packages.sh
 
+alacritty
 bash-completion
+bitwarden
 exfatprogs
 fastfetch
 gnome-keyring
 gimp
 gum
 imagemagick
+kitty
 less
 obs-studio
 plymouth
