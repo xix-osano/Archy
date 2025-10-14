@@ -1,55 +1,55 @@
 #!/bin/bash
 # ------------------------------------------------------------
-# Snapshot creator — safely take a Btrfs snapshot before customization
-# Author: Enosh, snapshot enthusiast
+# Snapper-based snapshot creator — automated, safe, and traceable
+# Author: Enosh
 # ------------------------------------------------------------
 
 set -euo pipefail
 
-# === CONFIGURATION ==========================================
-ROOT_SUBVOL="@"
-HOME_SUBVOL="@home"
-SNAPSHOT_DIR="/.snapshots"
+SNAPPER_ROOT_CONFIG="root"
+SNAPPER_HOME_CONFIG="home"
+LOGFILE="$HOME/pre-customization-snapshot.log"
 TIMESTAMP="$(date +'%Y-%m-%d_%H-%M-%S')"
-SNAP_NAME="PreArchySnap-$TIMESTAMP"
-LOGFILE="/var/log/pre-customization-snapshot.log"
-# =============================================================
+COMMENT="PreArchy snapshot $TIMESTAMP"
 
-# --- Log output to both screen and file ---
-exec > >(tee -a "$LOGFILE") 2>&1
-
-echo "🚀 Taking pre-customization snapshots at $TIMESTAMP..."
+echo "🚀 Taking Snapper snapshots at $TIMESTAMP..."
 echo "------------------------------------------------------------"
 
-# --- Check if on Btrfs ---
-if ! findmnt -no FSTYPE / | grep -q "btrfs"; then
-  echo "❌ This script only supports Btrfs filesystems."
-  exit 1
+# --- Check if snapper exists ---
+if ! command -v snapper &>/dev/null; then
+  echo "⚙️ Installing snapper..."
+  sudo pacman -S --noconfirm snapper
 fi
 
-# --- Ensure snapshot directories exist ---
-sudo mkdir -p "$SNAPSHOT_DIR/root" "$SNAPSHOT_DIR/home"
+# --- Ensure configs exist ---
+if ! sudo snapper list-configs | grep -q "$SNAPPER_ROOT_CONFIG"; then
+  echo "⚙️ Creating Snapper config for root..."
+  sudo snapper -c "$SNAPPER_ROOT_CONFIG" create-config /
+fi
+
+if [[ -d /home ]] && ! sudo snapper list-configs | grep -q "$SNAPPER_HOME_CONFIG"; then
+  echo "⚙️ Creating Snapper config for home..."
+  sudo snapper -c "$SNAPPER_HOME_CONFIG" create-config /home
+fi
 
 # --- Create snapshots ---
 echo "📸 Creating root snapshot..."
-sudo btrfs subvolume snapshot -r /"$ROOT_SUBVOL" "$SNAPSHOT_DIR/root/$SNAP_NAME"
-echo "✅ Root snapshot created at: $SNAPSHOT_DIR/root/$SNAP_NAME"
+sudo snapper -c "$SNAPPER_ROOT_CONFIG" create -t pre -p -d "$COMMENT"
 
 if [[ -d /home ]]; then
   echo "📸 Creating home snapshot..."
-  sudo btrfs subvolume snapshot -r /"$HOME_SUBVOL" "$SNAPSHOT_DIR/home/$SNAP_NAME"
-  echo "✅ Home snapshot created at: $SNAPSHOT_DIR/home/$SNAP_NAME"
+  sudo snapper -c "$SNAPPER_HOME_CONFIG" create -t pre -p -d "$COMMENT"
 fi
 
-# --- Log summary ---
+echo "✅ Snapshots created successfully!"
+echo "🧾 Log: $LOGFILE"
 echo "------------------------------------------------------------"
-echo "[$(date)] Snapshots created successfully:"
-echo "  🧩 Root → $SNAPSHOT_DIR/root/$SNAP_NAME"
-echo "  🏠 Home → $SNAPSHOT_DIR/home/$SNAP_NAME"
-echo "✨ Logged to: $LOGFILE"
+echo "✨ To list snapshots:"
+echo "  sudo snapper -c root list"
+echo "  sudo snapper -c home list"
 echo
-echo "🩵 To rollback later, you can run:"
-echo "  sudo btrfs subvolume delete /@ && sudo btrfs subvolume snapshot $SNAPSHOT_DIR/root/$SNAP_NAME /@"
+echo "🧩 To rollback if needed:"
+echo "  sudo snapper -c root undochange <from-snap>..<to-snap>"
+echo "  sudo snapper -c home undochange <from-snap>..<to-snap>"
 echo "------------------------------------------------------------"
-echo "✅ All systems go — you may now safely run your customizations."
 
