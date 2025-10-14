@@ -1,2 +1,3 @@
+source $ARCHY_INSTALL/preflight/initial-snapshot.sh
 source $ARCHY_INSTALL/preflight/disable-mkinitcpio.sh
 source $ARCHY_INSTALL/preflight/rust-linutil.sh
