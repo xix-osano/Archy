@@ -29,25 +29,7 @@ if [ -f "/etc/default/grub" ]; then
   else
     echo "GRUB already configured with splash and quiet parameters"
   fi
-
-  # Add plymouth to mkinitcpio.conf if missing
-  if ! grep -Eq '^HOOKS=.*plymouth' /etc/mkinitcpio.conf; then
-    echo "Adding plymouth hook to mkinitcpio.conf..."
-    backup_timestamp=$(date +"%Y%m%d%H%M%S")
-    sudo cp /etc/mkinitcpio.conf "/etc/mkinitcpio.conf.bak.${backup_timestamp}"
-
-    if grep -q "base systemd" /etc/mkinitcpio.conf; then
-      sudo sed -i '/^HOOKS=/s/base systemd/base systemd plymouth/' /etc/mkinitcpio.conf
-    elif grep -q "base udev" /etc/mkinitcpio.conf; then
-      sudo sed -i '/^HOOKS=/s/base udev/base udev plymouth/' /etc/mkinitcpio.conf
-    else
-      echo "Could not find base hook to append plymouth to."
-    fi
-
-    sudo mkinitcpio -P
-  else
-    echo "Plymouth hook already present in mkinitcpio.conf"
-  fi
+  
 else
   echo "GRUB not detected on this system."
 fi
