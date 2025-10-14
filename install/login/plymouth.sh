@@ -160,3 +160,28 @@ if systemctl list-unit-files | grep -q '^sddm.service'; then
 fi
 
 
+# -----------------------------------------------------------
+# Auto-enable GNOME Keyring auto-unlock via PAM
+# Adds necessary lines to /etc/pam.d/login (and optionally sddm/gdm)
+# -----------------------------------------------------------
+
+PAM_FILE="/etc/pam.d/login"
+
+# Add keyring lines if not already present
+if ! grep -q "pam_gnome_keyring.so" "$PAM_FILE"; then
+  echo "[INFO] Adding GNOME Keyring PAM integration to $PAM_FILE ..."
+  sudo tee -a "$PAM_FILE" >/dev/null <<'EOF'
+
+# --- Enable GNOME Keyring auto-unlock ---
+auth       optional     pam_gnome_keyring.so
+session    optional     pam_gnome_keyring.so auto_start
+EOF
+  echo "[SUCCESS] PAM configuration updated."
+else
+  echo "[INFO] GNOME Keyring PAM integration already exists in $PAM_FILE."
+fi
+
+echo "[DONE] Keyring PAM integration complete."
+echo "You may need to log out and back in for changes to take effect."
+
+

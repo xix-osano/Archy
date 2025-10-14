@@ -32,8 +32,8 @@ CPU_SCALING_GOVERNOR_ON_AC=performance
 CPU_SCALING_GOVERNOR_ON_BAT=powersave
 
 # Energy performance hints
-CPU_ENERGY_PERF_POLICY_ON_AC=performance
-CPU_ENERGY_PERF_POLICY_ON_BAT=power
+CPU_ENERGY_PERF_POLICY_ON_AC=balance_performance
+CPU_ENERGY_PERF_POLICY_ON_BAT=balance_power
 
 # AMD Ryzen boost control
 CPU_BOOST_ON_AC=1
@@ -44,8 +44,8 @@ PLATFORM_PROFILE_ON_AC=performance
 PLATFORM_PROFILE_ON_BAT=low-power
 
 # Disk devices
-DISK_APM_LEVEL_ON_AC=254
-DISK_APM_LEVEL_ON_BAT=128
+DISK_APM_LEVEL_ON_AC="254 254"
+DISK_APM_LEVEL_ON_BAT="128 128"
 
 # SATA link power management
 SATA_LINKPWR_ON_AC=med_power_with_dipm
@@ -69,10 +69,6 @@ RUNTIME_PM_ON_BAT=auto
 
 # USB autosuspend
 USB_AUTOSUSPEND=1
-
-# Ryzen balanced power savings
-SCHED_POWERSAVE_ON_AC=0
-SCHED_POWERSAVE_ON_BAT=1
 EOF'
 
 echo "==> Restarting TLP to apply settings..."

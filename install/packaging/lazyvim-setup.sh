@@ -37,29 +37,10 @@ rm -rf "$conf_dir/.git"
 echo "==> Bootstrapping LazyVim plugins..."
 nvim --headless "+Lazy! sync" +qa
 
-# ---------- inject svim alias ----------
-shells=()
-[[ -f $HOME/.bashrc ]] && shells+=("$HOME/.bashrc")
-[[ -f $HOME/.zshrc  ]] && shells+=("$HOME/.zshrc")
-command -v fish >/dev/null && [[ -d $HOME/.config/fish ]] && shells+=("$HOME/.config/fish/config.fish")
-
-for rc in "${shells[@]}"; do
-  if [[ $rc == *"config.fish"* ]]; then        # fish syntax
-    grep -qx 'alias svim "sudo -e"' "$rc" 2>/dev/null || echo 'alias svim "sudo -e"' >> "$rc"
-    grep -qx 'set -x SUDO_EDITOR nvim' "$rc" 2>/dev/null || echo 'set -x SUDO_EDITOR nvim' >> "$rc"
-  else                                         # bash/zsh
-    grep -qx 'alias svim.*sudo -e' "$rc" 2>/dev/null || echo "alias svim='sudo -e'" >> "$rc"
-    grep -qx 'export SUDO_EDITOR=nvim' "$rc" 2>/dev/null || echo 'export SUDO_EDITOR="nvim"' >> "$rc"
-  fi
-done
 # -------------- Done -------------------------
 
 echo
 echo "✔ LazyVim installed."
-echo "  Root-editing helper 'svim' alias added to your shell rc(s)."
-echo "  Usage:  svim /etc/pacman.conf"
-echo "Detected shell: $(basename "$SHELL")"
-echo
 echo "  Open nvim once to download plugins / LSP / treesitter:"
 echo "     nvim"
 echo "  Then read the docs inside:"
