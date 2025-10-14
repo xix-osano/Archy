@@ -3,6 +3,7 @@
 alacritty
 bash-completion
 bitwarden
+dosfstools
 exfatprogs
 gnome-keyring
 gimp
@@ -10,6 +11,7 @@ gum
 imagemagick
 kitty
 less
+ntfs-3g
 obs-studio
 plymouth
 unzip
