@@ -44,9 +44,13 @@ for cfg in root home; do
 done
 
 # --- Tweak snapper default configs ---
-sudo sed -i 's/^TIMELINE_CREATE="yes"/TIMELINE_CREATE="no"/' /etc/snapper/configs/{root,home}
-sudo sed -i 's/^NUMBER_LIMIT="50"/NUMBER_LIMIT="5"/' /etc/snapper/configs/{root,home}
-sudo sed -i 's/^NUMBER_LIMIT_IMPORTANT="10"/NUMBER_LIMIT_IMPORTANT="5"/' /etc/snapper/configs/{root,home}
+for cfg in /etc/snapper/configs/root /etc/snapper/configs/home; do
+  [[ -f "$cfg" ]] || continue
+  sudo sed -i 's/^TIMELINE_CREATE="yes"/TIMELINE_CREATE="no"/' "$cfg"
+  sudo sed -i 's/^NUMBER_LIMIT="50"/NUMBER_LIMIT="5"/' "$cfg"
+  sudo sed -i 's/^NUMBER_LIMIT_IMPORTANT="10"/NUMBER_LIMIT_IMPORTANT="5"/' "$cfg"
+done
+
 
 # Backup GRUB config before modifying
 if [[ -f /etc/default/grub ]]; then
