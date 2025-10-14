@@ -65,7 +65,7 @@ fi
 sudo cp -r ~/.local/share/archy/install/Vixy /boot/grub/themes/Vixy
 # --- Ensure grub-theme setting exists (update or append) ---
 if grep -q '^GRUB_THEME=' /etc/default/grub; then
-  sudo sed -i 's/^GRUB_THEME=.*/GRUB_THEME="/boot/grub/themes/Vixy/theme.txt"/' /etc/default/grub
+  sudo sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/Vixy/theme.txt"|' /etc/default/grub
 else
   echo 'GRUB_THEME="/boot/grub/themes/Vixy/theme.txt"' | sudo tee -a /etc/default/grub >/dev/null
 fi
