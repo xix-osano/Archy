@@ -16,9 +16,9 @@ echo
 set -euo pipefail
 
 # ---------- 0. Helper Functions ----------
-log() { echo -e "[\e[1;34mINFO\e[0m] $*"; }
-warn() { echo -e "[\e[1;33mWARN\e[0m] $*"; }
-error() { echo -e "[\e[1;31mERROR\e[0m] $*" >&2; exit 1; }
+log() { cecho $GREEN -e "[\e[1;34mINFO\e[0m] $*"; }
+warn() { cecho $YELLOW -e "[\e[1;33mWARN\e[0m] $*"; }
+error() { cecho $RED -e "[\e[1;31mERROR\e[0m] $*" >&2; exit 1; }
 
 # ---------- 1.  Collect University SSID & preflight check ----------
 read -rp "Enter your University SSID (exact name): " UNI_SSID

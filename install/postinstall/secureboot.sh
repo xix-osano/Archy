@@ -19,7 +19,7 @@ if [[ ! -d /sys/firmware/efi/efivars ]]; then
   exit 1
 fi
 
-echo "==> Checking sbctl status..."
+cecho $BLUE "==> Checking sbctl status..."
 sudo sbctl status || true
 
 # Create keys if missing
@@ -76,7 +76,7 @@ for file in "${FILES_TO_SIGN[@]}"; do
 done
 
 echo "==> Running final verification..."
-sudo sbctl verify || echo "⚠ Some binaries may not be signed yet."
+sudo sbctl verify || cecho $RED "⚠ Some binaries may not be signed yet."
 
 echo "==> Signing all remaining unsigned EFI binaries..."
 sudo sbctl sign-all || true
@@ -103,8 +103,8 @@ sudo sbctl sign-all || true
 # sudo chmod 644 "$HOOK_PATH"
 
 echo
-echo "✔ Secure Boot setup complete!"
-echo "  Verify with: sudo sbctl status"
-echo "  To check signatures: sudo sbctl verify"
-echo "  On every kernel or GRUB update, EFI binaries will auto re-sign."
-echo "  Reboot and enable Secure Boot in firmware when ready."
+cecho $GREEN "✔ Secure Boot setup complete!"
+cecho $GREEN "  Verify with: sudo sbctl status"
+cecho $GREEN "  To check signatures: sudo sbctl verify"
+cecho $GREEN "  On every kernel or GRUB update, EFI binaries will auto re-sign."
+cecho $GREEN "  Reboot and enable Secure Boot in firmware when ready."

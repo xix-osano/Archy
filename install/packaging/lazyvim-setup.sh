@@ -21,7 +21,7 @@ command -v nvim >/dev/null || {
 # version check (semver)
 current=$(nvim --version | head -n1 | grep -oP '\d+\.\d+\.\d+')
 if [[ "$(printf '%s\n' "$NVIM_MIN" "$current" | sort -V | head -n1)" != "$NVIM_MIN" ]]; then
-  echo "ERROR: Neovim $current < required $NVIM_MIN"
+  cecho $RED "ERROR: Neovim $current < required $NVIM_MIN"
   echo "       Upgrade first (yay -S neovim-nightly if needed)."
   exit 1
 fi
@@ -47,8 +47,7 @@ nvim --headless "+Lazy! sync" +qa
 # -------------- Done -------------------------
 
 echo
-echo "✔ LazyVim installed."
-echo "  Open nvim once to download plugins / LSP / treesitter:"
-echo "     nvim"
-echo "  Then read the docs inside:"
-echo "     :help lazyvim-tutorials"
+cecho $GREEN "✔ LazyVim installed."
+cecho $GREEN "  Open nvim once to download plugins / LSP / treesitter:"
+cecho $GREEN "     nvim"
+cecho $GREEN "  Then read the docs inside"

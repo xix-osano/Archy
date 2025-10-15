@@ -18,7 +18,7 @@ echo "Logging to $LOGFILE"
 # -----------------------------------------
 # 0. Module selection
 # -----------------------------------------
-echo "Select modules to install (y/n):"
+cecho $YELLOW "Select modules to install (y/n):"
 
 read -rp "Install UFW firewall? (y/n): " INSTALL_UFW
 read -rp "Harden SSH? (y/n): " INSTALL_SSH
@@ -94,8 +94,8 @@ fi
 # -----------------------------------------
 # Completion
 # -----------------------------------------
-echo "✅ Arch Defensive Setup. reboot recommended"
-echo "========================================="
-echo " SECURITY SETUP COMPLETE "
-echo "========================================="
-echo "Reboot to activate AppArmor (if kernel parameters were added)."
+cecho $GREEN "✅ Arch Defensive Setup. reboot recommended"
+cecho $GREEN "========================================="
+cecho $GREEN " SECURITY SETUP COMPLETE "
+cecho $GREEN "========================================="
+cecho $GREEN "Reboot to activate AppArmor (if kernel parameters were added)."

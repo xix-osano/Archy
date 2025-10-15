@@ -44,7 +44,7 @@ if [[ -d /home ]]; then
   sudo snapper -c "$SNAPPER_HOME_CONFIG" create -t pre -p -d "$COMMENT"
 fi
 
-echo "✅ Snapshots created successfully!"
+cecho $GREEN "✅ Snapshots created successfully!"
 echo "🧾 Log: $LOGFILE"
 echo "------------------------------------------------------------"
 echo "✨ To list snapshots:"

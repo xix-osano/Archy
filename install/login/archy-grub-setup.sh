@@ -25,7 +25,7 @@ THEME_DST=/boot/grub/themes/Vixy
 backup_grub(){
     local ts=$(date +%Y%m%d%H%M%S)
     sudo cp "$GRUB_CFG" "${GRUB_CFG}.bak.${ts}"
-    echo "Backed up $GRUB_CFG → ${GRUB_CFG}.bak.${ts}"
+    cecho $GREEN "Backed up $GRUB_CFG → ${GRUB_CFG}.bak.${ts}"
 }
 
 # idempotent key=value editor
@@ -34,14 +34,14 @@ set_grub(){
     if grep -q "^${key}=" "$GRUB_CFG"; then
         sudo sed -i "s|^${key}=.*|${key}=${val}|" "$GRUB_CFG"
     else
-        echo "${key}=${val}" >> "$GRUB_CFG"
+        cecho $GREEN "${key}=${val}" >> "$GRUB_CFG"
     fi
 }
 
 #-------------------------------------------------------------------------------
 # 2. GRUB packages & installation
 #-------------------------------------------------------------------------------
-echo -e "\e[34m==> Installing GRUB (${BOOTMODE}) …\e[0m"
+cecho $BLUE -e "\e[34m==> Installing GRUB (${BOOTMODE}) …\e[0m"
 
 pkg=(grub os-prober snapper inotify-tools grub-btrfs)
 $EFI && pkg+=(efibootmgr)

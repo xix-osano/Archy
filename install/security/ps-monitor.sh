@@ -312,7 +312,7 @@ fi
 # -----------------------------------------
 send_telegram "🎉 Arch Telegram Monitor setup complete on $(hostname)"
 
-echo "========================================================"
-echo "✅ Setup complete. Review $CONFIG_DIR for configurations."
-echo "Note: All timers are user-level. Ensure 'systemctl --user' is enabled."
-echo "========================================================"
+cecho $GREEN "========================================================"
+cecho $GREEN "✅ Setup complete. Review $CONFIG_DIR for configurations."
+cecho $GREEN "Note: All timers are user-level. Ensure 'systemctl --user' is enabled."
+cecho $GREEN "========================================================"

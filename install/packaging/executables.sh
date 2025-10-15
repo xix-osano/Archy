@@ -14,16 +14,16 @@ echo "[INFO] Setting up Archy utilities..."
 
 # Ensure directory exists
 if [ ! -d "$ARCHY_DIR" ]; then
-    echo "[ERROR] $ARCHY_DIR does not exist. Please clone Archy first."
+    cecho $RED "[ERROR] $ARCHY_DIR does not exist. Please clone Archy first."
     exit 1
 fi
 
 # Make scripts executable
-echo "[INFO] Making Archy scripts executable..."
+cecho $YELLOW "[INFO] Making Archy scripts executable..."
 chmod +x "$ARCHY_DIR"/*
 
 # Link scripts into /usr/local/bin
-echo "[INFO] Linking scripts to /usr/local/bin..."
+cecho $YELLOW "[INFO] Linking scripts to /usr/local/bin..."
 for script in "$ARCHY_DIR"/*; do
     name=$(basename "$script")
     if [ ! -f "/usr/local/bin/$name" ]; then
@@ -34,5 +34,5 @@ for script in "$ARCHY_DIR"/*; do
     fi
 done
 
-echo "[SUCCESS] Archy utilities are now globally available."
+cecho $GREEN "[SUCCESS] Archy utilities are now globally available."
 

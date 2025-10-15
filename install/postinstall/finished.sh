@@ -9,9 +9,9 @@ sudo mkdir -p ~/Pictures/Backgrounds
 # Copy backgrounds safely
 if [[ -d ~/.local/share/archy/themes/Backgrounds ]]; then
   sudo cp -r ~/.local/share/archy/themes/Backgrounds/* ~/Pictures/Backgrounds/
-  echo "[INFO] ✅ Background images copied to ~/Pictures/Backgrounds"
+  cecho $GREEN "[INFO] ✅ Background images copied to ~/Pictures/Backgrounds"
 else
-  echo "[WARN] ⚠️  Source directory not found: ~/.local/share/archy/themes/Backgrounds"
+  cecho $RED "[WARN] ⚠️  Source directory not found: ~/.local/share/archy/themes/Backgrounds"
 fi
 
 # ------------------------------------------------------

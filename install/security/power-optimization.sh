@@ -102,5 +102,7 @@ EOF'
 echo "==> Enabling Powertop service..."
 sudo systemctl enable powertop.service
 
-echo "✅ Power optimization setup complete!"
-echo "You can now reboot or run 'sudo systemctl start powertop.service' to apply Powertop tunings."
+cecho $GREEN "-------------------------------"
+cecho $GREEN "✅ Power optimization setup complete!"
+cecho $GREEN "You can now reboot or run 'sudo systemctl start powertop.service' to apply Powertop tunings."
+cecho $GREEN "-------------------------------"

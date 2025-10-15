@@ -178,12 +178,12 @@ if ! grep -q "pam_gnome_keyring.so" "$PAM_FILE"; then
 auth       optional     pam_gnome_keyring.so
 session    optional     pam_gnome_keyring.so auto_start
 EOF
-  echo "[SUCCESS] PAM configuration updated."
+  cecho $GREEN "[SUCCESS] PAM configuration updated."
 else
-  echo "[INFO] GNOME Keyring PAM integration already exists in $PAM_FILE."
+  cecho $YELLOW "[INFO] GNOME Keyring PAM integration already exists in $PAM_FILE."
 fi
 
-echo "[DONE] Keyring PAM integration complete."
-echo "You may need to log out and back in for changes to take effect."
+cecho $GREEN "[DONE] Keyring PAM integration complete."
+cecho $GREEN "You may need to log out and back in for changes to take effect."
 
 
