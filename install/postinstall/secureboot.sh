@@ -106,6 +106,5 @@ echo
 echo "✔ Secure Boot setup complete!"
 echo "  Verify with: sudo sbctl status"
 echo "  To check signatures: sudo sbctl verify"
-echo "  Hook installed at: $HOOK_PATH"
 echo "  On every kernel or GRUB update, EFI binaries will auto re-sign."
 echo "  Reboot and enable Secure Boot in firmware when ready."
