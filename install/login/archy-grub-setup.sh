@@ -108,9 +108,9 @@ set_grub GRUB_CMDLINE_LINUX_DEFAULT "\"${CMD# }\""
 #-------------------------------------------------------------------------------
 # 5. Finalise
 #-------------------------------------------------------------------------------
-grub-mkconfig -o "$GRUB_DST"
+sudo grub-mkconfig -o "$GRUB_DST"
 sudo systemctl enable --now grub-btrfsd.service
 
-echo -e "\e[32m==> GRUB + Snapper ready.\e[0m"
-echo "   Snapshots will appear in the submenu ‘Arch Linux Snapshots’."
-echo "   Re-run ‘grub-mkconfig -o $GRUB_DST’ after manual snapshots."
+cecho $GREEN -e "\e[32m==> GRUB + Snapper ready.\e[0m"
+cecho $GREEN "   Snapshots will appear in the submenu ‘Arch Linux Snapshots’."
+cecho $GREEN "   Re-run ‘grub-mkconfig -o $GRUB_DST’ after manual snapshots."
