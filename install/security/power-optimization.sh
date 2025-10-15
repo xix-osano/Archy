@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-echo "========================================="
-echo "     Archy Linux Power Optimization"
-echo "========================================="
+echo
+cecho $BLUE "========================================="
+cecho $BLUE "     Archy Linux Power Optimization"
+cecho $BLUE "========================================="
 echo
 
 set -euo pipefail

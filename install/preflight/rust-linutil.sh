@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-echo "============================================"
-echo "     Archy Linux Rust & Linuti Tool Setup"
-echo "============================================"
+echo
+cecho $BLUE "============================================"
+cecho $BLUE "     Archy Linux Rust & Linuti Tool Setup"
+cecho $BLUE "============================================"
 echo
 
 set -euo pipefail

@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-echo "============================================"
-echo "     Archy Linux Global Executables Setup"
-echo "============================================"
+echo
+cecho $BLUE "============================================"
+cecho $BLUE "     Archy Linux Global Executables Setup"
+cecho $BLUE "============================================"
 echo
 
 set -e

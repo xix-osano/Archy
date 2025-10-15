@@ -1,6 +1,7 @@
-echo "==========================================="
-echo "Re-enabling mkinitcpio hooks..."
-echo "==========================================="
+echo
+cecho $BLUE "==========================================="
+cecho $BLUE "Re-enabling mkinitcpio hooks..."
+cecho $BLUE "==========================================="
 echo
 
 # Restore the specific mkinitcpio pacman hooks

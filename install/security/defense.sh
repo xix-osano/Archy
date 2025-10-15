@@ -4,9 +4,10 @@
 #  Author: Enosh (System defense)
 # =========================================
 
-echo "========================================="
-echo "     Archy Linux Defensive Setup Tool"
-echo "========================================="
+echo
+cecho $BLUE "========================================="
+cecho $BLUE "     Archy Linux Defensive Setup Tool"
+cecho $BLUE "========================================="
 echo
 
 set -euo pipefail

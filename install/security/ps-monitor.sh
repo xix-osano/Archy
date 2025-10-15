@@ -5,9 +5,11 @@
 # =====================================================
 set -euo pipefail
 
-echo "========================================================"
-echo " Performance & Security Monitoring via Telegram"
-echo "========================================================"
+echo
+cecho $BLUE "========================================================"
+cecho $BLUE " Performance & Security Monitoring via Telegram"
+cecho $BLUE "========================================================"
+echo
 
 CONFIG_DIR="$HOME/.config/arch-telegram-monitor"
 mkdir -p "$CONFIG_DIR"

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-echo "==============================================================================="
-echo "  ARCHY - GRUB + Snapper installer"
-echo "==============================================================================="
+echo
+cecho $BLUE "==============================================================================="
+cecho $BLUE "  ARCHY - GRUB + Snapper installer"
+cecho $BLUE "==============================================================================="
 echo
 
 set -euo pipefail
@@ -62,11 +63,15 @@ fi
 #-------------------------------------------------------------------------------
 # 3. Snapper configs
 #-------------------------------------------------------------------------------
-for dir snapcfg in /:root /home:home; do
-    [[ -d ${dir%:*} ]] || continue
-    sudo snapper list-configs | grep -qw "${dir#*:}" && continue
-    sudo snapper -c "${dir#*:}" create-config "${dir%:*}"
+for pair in /:root /home:home; do
+    dir="${pair%%:*}"      # before colon
+    snapcfg="${pair##*:}"  # after colon
+
+    [[ -d "$dir" ]] || continue
+    sudo snapper list-configs | grep -qw "$snapcfg" && continue
+    sudo snapper -c "$snapcfg" create-config "$dir"
 done
+
 
 # tighten retention
 for cfg in /etc/snapper/configs/{root,home}; do

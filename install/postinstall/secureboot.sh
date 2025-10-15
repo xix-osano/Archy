@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # secureboot-setup.sh — Configure Secure Boot with sbctl and GRUB
 
-echo "========================================="
-echo "     Archy Linux Secureboot Setup"
-echo "========================================="
+echo
+cecho $BLUE "========================================="
+cecho $BLUE "     Archy Linux Secureboot Setup"
+cecho $BLUE "========================================="
 echo
 
 set -euo pipefail

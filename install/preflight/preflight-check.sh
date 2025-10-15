@@ -4,10 +4,11 @@
 #  Ensures proper environment before continuing execution
 # =======================================================
 
-
+echo
 cecho $BLUE "============================================="
 cecho $BLUE " Preflight Checks"
 cecho $BLUE "============================================="
+echo
 
 set -euo pipefail
 

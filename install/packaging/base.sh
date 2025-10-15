@@ -1,8 +1,9 @@
 # Install all base packages
 
-echo "============================================"
-echo "     Archy Linux Base Packages Installation"
-echo "============================================"
+echo
+cecho $BLUE "============================================"
+cecho $BLUE "     Archy Linux Base Packages Installation"
+cecho $BLUE "============================================"
 echo
 
 mapfile -t packages < <(grep -v '^#' "$ARCHY_INSTALL/archy-base.packages" | grep -v '^$')

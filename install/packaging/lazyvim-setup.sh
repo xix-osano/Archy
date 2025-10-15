@@ -1,8 +1,9 @@
 #!/bin/bash
 
-echo "============================================"
-echo "     Archy Linux Lazyvim Setup"
-echo "============================================"
+echo
+cecho $BLUE "============================================"
+cecho $BLUE "     Archy Linux Lazyvim Setup"
+cecho $BLUE "============================================"
 echo
 
 set -e
