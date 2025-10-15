@@ -1,7 +1,5 @@
 # Archy core package list installed via install/packages.sh
 
-alacritty
-bash-completion
 bitwarden
 dosfstools
 exfatprogs
@@ -9,11 +7,13 @@ gnome-keyring
 gimp
 gum
 imagemagick
+inetutils
 kitty
 less
 ntfs-3g
 obs-studio
 plymouth
 unzip
+uwsm
 vlc
 vlc-plugin-ffmpeg

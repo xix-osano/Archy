@@ -1,4 +1,7 @@
+echo "==========================================="
 echo "Re-enabling mkinitcpio hooks..."
+echo "==========================================="
+echo
 
 # Restore the specific mkinitcpio pacman hooks
 if [ -f /usr/share/libalpm/hooks/90-mkinitcpio-install.hook.disabled ]; then

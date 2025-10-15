@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+echo "============================================"
+echo "     Archy Linux Global Executables Setup"
+echo "============================================"
+echo
+
 set -e
 
 ARCHY_DIR="/home/enosh/.local/share/archy/bin"

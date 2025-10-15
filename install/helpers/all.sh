@@ -1,0 +1,1 @@
+source $ARCHY_INSTALL/helpers/colors.sh

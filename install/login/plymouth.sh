@@ -1,8 +1,8 @@
 # Hyprland launched via UWSM and login directly as user, rely on disk encryption + hyprlock for security
 
-# ================================================================================
-# PLYMOUTH SETUP
-# ================================================================================
+echo "================================================================================"
+echo " PLYMOUTH AND SEAMLESS LOGIN SETUP"
+echo "================================================================================"
 
 if [ "$(plymouth-set-default-theme)" != "archy" ]; then
   sudo cp -r "$HOME/.local/share/archy/default/plymouth" /usr/share/plymouth/themes/archy/

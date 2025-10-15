@@ -7,6 +7,11 @@
 # Integrates NetworkManager + systemd-resolved cleanly.
 # -------------------------------------------------------------
 
+echo "========================================="
+echo "     Archy Linux Smart DNS setup"
+echo "========================================="
+echo
+
 set -euo pipefail
 
 # ---------- 0. Helper Functions ----------

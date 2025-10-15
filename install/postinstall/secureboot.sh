@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 # secureboot-setup.sh — Configure Secure Boot with sbctl and GRUB
+
+echo "========================================="
+echo "     Archy Linux Secureboot Setup"
+echo "========================================="
+echo
+
 set -euo pipefail
 
 echo "==> Installing Secure Boot tools..."
@@ -40,7 +46,7 @@ fi
 echo "==> Reinstalling GRUB with TPM module..."
 sudo grub-install --target=x86_64-efi \
   --efi-directory=/boot \
-  --bootloader-id=Archy \
+  --bootloader-id=ARCHY \
   --modules="tpm" \
   --disable-shim-lock
 
@@ -75,25 +81,25 @@ echo "==> Signing all remaining unsigned EFI binaries..."
 sudo sbctl sign-all || true
 
 # Create pacman hook for automatic signing
-HOOK_PATH="/etc/pacman.d/hooks/99-secureboot.hook"
-echo "==> Setting up pacman hook at $HOOK_PATH ..."
-sudo mkdir -p /etc/pacman.d/hooks
-sudo tee "$HOOK_PATH" >/dev/null <<'EOF'
-[Trigger]
-Operation = Install
-Operation = Upgrade
-Type = Package
-Target = linux
-Target = linux-lts
-Target = grub
+# HOOK_PATH="/etc/pacman.d/hooks/99-secureboot.hook"
+# echo "==> Setting up pacman hook at $HOOK_PATH ..."
+# sudo mkdir -p /etc/pacman.d/hooks
+# sudo tee "$HOOK_PATH" >/dev/null <<'EOF'
+# [Trigger]
+# Operation = Install
+# Operation = Upgrade
+# Type = Package
+# Target = linux
+# Target = linux-lts
+# Target = grub
 
-[Action]
-Description = Re-sign EFI binaries for Secure Boot
-When = PostTransaction
-Exec = /usr/bin/sbctl sign-all
-EOF
+# [Action]
+# Description = Re-sign EFI binaries for Secure Boot
+# When = PostTransaction
+# Exec = /usr/bin/sbctl sign-all
+# EOF
 
-sudo chmod 644 "$HOOK_PATH"
+# sudo chmod 644 "$HOOK_PATH"
 
 echo
 echo "✔ Secure Boot setup complete!"

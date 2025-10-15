@@ -9,6 +9,7 @@ export ARCHY_INSTALL="$ARCHY_PATH/install"
 export PATH="$ARCHY_PATH/bin:$PATH"
 
 # Install
+source "$ARCHY_INSTALL/helpers/all.sh"
 source "$ARCHY_INSTALL/preflight/all.sh"
 source "$ARCHY_INSTALL/packaging/all.sh"
 source "$ARCHY_INSTALL/login/all.sh"

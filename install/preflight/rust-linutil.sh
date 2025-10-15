@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+echo "============================================"
+echo "     Archy Linux Rust & Linuti Tool Setup"
+echo "============================================"
+echo
+
 set -euo pipefail
 
 log() { echo -e "\e[34m==> $*\e[0m"; }

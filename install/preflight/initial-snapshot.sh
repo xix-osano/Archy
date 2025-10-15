@@ -12,6 +12,9 @@ LOGFILE="$HOME/pre-customization-snapshot.log"
 TIMESTAMP="$(date +'%Y-%m-%d_%H-%M-%S')"
 COMMENT="PreArchy snapshot $TIMESTAMP"
 
+echo "=============================================="
+echo "     Archy Linux Pre-customization Snapshot"
+echo "=============================================="
 echo "🚀 Taking Snapper snapshots at $TIMESTAMP..."
 echo "------------------------------------------------------------"
 

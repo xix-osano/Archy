@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+echo "========================================="
+echo "     Archy Linux Power Optimization"
+echo "========================================="
+echo
+
 set -euo pipefail
 
 echo "==> Installing power management tools..."
