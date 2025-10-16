@@ -48,10 +48,11 @@ EOF
 # -----------------------------------------
 # Make telegram-send globally accessible
 # -----------------------------------------
+cecho $BLUE "Linking telegram-send to usr/local/bin"
 sudo ln -sf "$HELPER" /usr/local/bin/telegram-send
 sudo chmod +x /usr/local/bin/telegram-send
-echo "Now telegram-send is globally accessible. To use, run:"
-echo " telegram-send <"Your message"> "
+cecho $GREEN "Now telegram-send is globally accessible. To use, run:"
+cecho $YELLOW " telegram-send <"Your message"> "
 
 send_telegram() { "$HELPER" "$*"; }
 send_telegram_file() {

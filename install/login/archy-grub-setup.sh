@@ -43,7 +43,7 @@ set_grub() {
 #-------------------------------------------------------------------------------
 cecho $BLUE -e "\e[34m==> Installing GRUB (${BOOTMODE}) …\e[0m"
 
-pkg=(grub os-prober snapper inotify-tools grub-btrfs)
+pkg=(grub snapper inotify-tools grub-btrfs)
 $EFI && pkg+=(efibootmgr)
 sudo pacman -S --noconfirm --needed "${pkg[@]}"
 

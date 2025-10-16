@@ -19,7 +19,7 @@ acpi || echo "ACPI command failed — ensure it's installed properly."
 if upower -e | grep -q "BAT"; then
   upower -i "$(upower -e | grep BAT)"
 else
-  echo "No battery detected via upower."
+  cecho $RED "No battery detected via upower."
 fi
 
 #Backup Tlp before editing

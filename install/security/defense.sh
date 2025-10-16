@@ -37,7 +37,7 @@ if [[ "$INSTALL_UFW" == "y" ]]; then
     sudo ufw default allow outgoing
     sudo ufw --force enable
     sudo ufw status verbose
-    echo "UFW enabled. Firewall active and configured."
+    cecho $GREEN "UFW enabled. Firewall active and configured."
 fi
 
 # -----------------------------------------
@@ -48,7 +48,7 @@ if [[ "$INSTALL_SSH" == "y" && -f /etc/ssh/sshd_config ]]; then
     sudo sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
     sudo sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
     sudo systemctl restart sshd
-    echo "SSH hardened: root login and password auth disabled."
+    cecho $GREEN "SSH hardened: root login and password auth disabled."
 fi
 
 # -----------------------------------------
@@ -68,9 +68,9 @@ if [[ "$INSTALL_APPARMOR" == "y" ]]; then
         new=$(echo "$new" | xargs)
         sudo sed -i "s|^GRUB_CMDLINE_LINUX_DEFAULT.*|GRUB_CMDLINE_LINUX_DEFAULT=\"$new\"|" /etc/default/grub
         sudo grub-mkconfig -o /boot/grub/grub.cfg
-        echo "GRUB updated – reboot required for AppArmor"
+        cecho $GREEN "GRUB updated – reboot required for AppArmor"
     else
-        echo "⚠ No GRUB detected – add kernel parameters manually for AppArmor."
+        cecho $RED "⚠ No GRUB detected – add kernel parameters manually for AppArmor."
     fi
 fi
 
