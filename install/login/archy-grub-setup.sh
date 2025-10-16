@@ -16,7 +16,7 @@ BOOTMODE=$([[ $EFI == true ]] && echo "UEFI" || echo "BIOS")
 
 GRUB_CFG=/etc/default/grub
 GRUB_DST=/boot/grub/grub.cfg
-THEME_SRC=~/.local/share/archy/install/Vixy
+THEME_SRC="$HOME/.local/share/archy/install/Vixy"
 THEME_DST=/boot/grub/themes/Vixy
 
 #-------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ set_grub() {
   if grep -q "^${key}=" "$GRUB_CFG"; then
     sudo sed -i "s|^${key}=.*|${key}=${val}|" "$GRUB_CFG"
   else
-    sudo echo "${key}=${val}" >>"$GRUB_CFG"
+    echo "${key}=${val}" | sudo tee -a "$GRUB_CFG" > /dev/null
   fi
 }
 
