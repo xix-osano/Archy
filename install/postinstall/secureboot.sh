@@ -75,32 +75,10 @@ for file in "${FILES_TO_SIGN[@]}"; do
   fi
 done
 
-echo "==> Running final verification..."
+cecho $BLUE "==> Running verification..."
 sudo sbctl verify || cecho $RED "⚠ Some binaries may not be signed yet."
-
-echo "==> Signing all remaining unsigned EFI binaries..."
 sudo sbctl sign-all || true
-
-# Create pacman hook for automatic signing
-# HOOK_PATH="/etc/pacman.d/hooks/99-secureboot.hook"
-# echo "==> Setting up pacman hook at $HOOK_PATH ..."
-# sudo mkdir -p /etc/pacman.d/hooks
-# sudo tee "$HOOK_PATH" >/dev/null <<'EOF'
-# [Trigger]
-# Operation = Install
-# Operation = Upgrade
-# Type = Package
-# Target = linux
-# Target = linux-lts
-# Target = grub
-
-# [Action]
-# Description = Re-sign EFI binaries for Secure Boot
-# When = PostTransaction
-# Exec = /usr/bin/sbctl sign-all
-# EOF
-
-# sudo chmod 644 "$HOOK_PATH"
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 echo
 cecho $GREEN "✔ Secure Boot setup complete!"
