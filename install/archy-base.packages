@@ -1,6 +1,7 @@
 # Archy core package list installed via install/packages.sh
 
 bitwarden
+btop
 dosfstools
 exfatprogs
 gnome-keyring
@@ -13,6 +14,7 @@ less
 ntfs-3g
 obs-studio
 plymouth
+seahorse
 unzip
 uwsm
 vlc
